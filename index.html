@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi niña ❤️</title>
+    <title>Para mi nena ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -82,10 +82,7 @@
             font-weight: 800;
             color: #ff4d6d;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            text-align: center;
         }
         .mensaje {
             font-size: 1.15rem;
@@ -135,11 +132,11 @@
 
         <div id="contador-container">
             <div id="numero" class="numero">0</div>
-            <div id="texto-dinamico" class="texto-contador">días a tu lado...</div>
+            <div class="texto-contador">días a tu lado... que podrían parecer 250 segundos de lo feliz que estoy contigo.</div>
         </div>
 
         <div id="carta">
-            <div class="titulo-dias">🌸 250 Días 🌸</div>
+            <div class="titulo-dias">250 Días</div>
             <p class="mensaje">
                 Parece ayer cuando mandé el mensaje más absurdo de mi vida, pero desde que me respondiste, entendí que aquel mensaje no fue absurdo, sino perfecto. Gracias por hacerme tan feliz y demostrarme lo que es el amor verdadero.
             </p>
@@ -147,13 +144,12 @@
         </div>
     </div>
 
-    <script>
+    <script {
         // Configuración y generación de pétalos de rosa flotantes
         function crearPetalo() {
             const petalo = document.createElement('div');
             petalo.classList.add('petalo');
             
-            // Tamaños y tonos aleatorios para que quede más realista y bonito
             const tamaño = Math.random() * 15 + 10; 
             const tonosRosa = ['#ffb3c1', '#ff85a1', '#f7a4b8', '#ffccd5'];
             
@@ -161,46 +157,38 @@
             petalo.style.height = (tamaño * 1.2) + 'px';
             petalo.style.backgroundColor = tonosRosa[Math.floor(Math.random() * tonosRosa.length)];
             petalo.style.left = Math.random() * 100 + 'vw';
-            petalo.style.animationDuration = Math.random() * 3 + 4 + 's'; // Velocidad de caída
+            petalo.style.animationDuration = Math.random() * 3 + 4 + 's';
             
             document.body.appendChild(petalo);
             setTimeout(() => { petalo.remove(); }, 6000);
         }
-        // Iniciar la lluvia suave de pétalos desde el principio
         setInterval(crearPetalo, 250);
 
-        // Lógica del contador interactivo
+        // Lógica del contador
         function empezarContador() {
             document.getElementById('btn-inicio').style.display = 'none';
             document.getElementById('contador-container').style.display = 'block';
             
             let cuenta = 0;
             const objetivo = 250;
-            const velocidad = 12; // Un pelín más rápido para dar dinamismo
-            const textoDinamico = document.getElementById('texto-dinamico');
+            const velocidad = 12;
 
             const intervalo = setInterval(() => {
                 cuenta++;
                 document.getElementById('numero').innerText = cuenta;
                 
-                // Efecto de texto dinámico a mitad del contador
-                if (cuenta > 120) {
-                    textoDinamico.innerText = "...que podrían parecer 250 segundos de lo feliz que estoy a tu lado.";
-                }
-                
                 if (cuenta >= objetivo) {
                     clearInterval(intervalo);
-                    setTimeout(mostrarMensajeFinal, 1200); // Pausa dramática antes de la carta
+                    setTimeout(mostrarMensajeFinal, 1200); // Pausa para terminar de leer antes de la carta
                 }
             }, velocidad);
         }
 
-        // Mostrar la carta con explosión de pétalos
+        // Mostrar la carta final
         function mostrarMensajeFinal() {
             document.getElementById('contador-container').style.display = 'none';
             document.getElementById('carta').style.display = 'block';
             
-            // Lluvia extra de pétalos para celebrar el final
             for(let i = 0; i < 40; i++) {
                 setTimeout(crearPetalo, i * 80);
             }
