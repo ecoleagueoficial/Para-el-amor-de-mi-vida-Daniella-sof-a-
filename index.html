@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para el amor de mi vida❤️</title>
+    <title>Para mi niña ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -11,7 +11,7 @@
             padding: 0;
         }
         body {
-            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            background: linear-gradient(135deg, #fff0f3, #ffccd5);
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -23,143 +23,186 @@
         .container {
             padding: 20px;
             z-index: 10;
+            width: 100%;
+            max-width: 500px;
         }
-        /* Botón Inicial */
-        .btn-sorpresa {
-            background-color: #ff477e;
-            color: white;
+        /* Botón Inicial Romántico */
+        .btn-interactivo {
+            background: none;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 50px;
+            font-size: 1.5rem;
+            color: #c9184a;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
-            transition: transform 0.2s, background-color 0.2s;
+            font-weight: 500;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            animation: latido 2s infinite ease-in-out;
         }
-        .btn-sorpresa:hover {
-            transform: scale(1.05);
-            background-color: #ff0a54;
+        .btn-interactivo span {
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 10px;
         }
-        /* Contador */
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        /* Contador Rediseñado */
         #contador-container {
             display: none;
         }
         .numero {
-            font-size: 5rem;
-            font-weight: bold;
-            color: #ff477e;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            font-size: 5.5rem;
+            font-weight: 800;
+            color: #ff4d6d;
+            text-shadow: 2px 4px 10px rgba(255, 77, 109, 0.2);
+            line-height: 1;
         }
         .texto-contador {
-            font-size: 1.5rem;
-            color: #4a4a4a;
-            margin-top: 10px;
+            font-size: 1.25rem;
+            color: #590d22;
+            margin-top: 15px;
+            line-height: 1.5;
+            padding: 0 20px;
         }
-        /* Carta Final */
+        /* Carta Final Elegante y Centrada */
         #carta {
             display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 400px;
-            animation: aparecer 1s ease forwards;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(89, 13, 34, 0.1);
+            width: 90%;
+            margin: 0 auto;
+            animation: entradaCarta 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
         .titulo-dias {
-            font-size: 3.5rem;
-            color: #ff477e;
-            margin-bottom: 10px;
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         .mensaje {
-            font-size: 1.2rem;
-            color: #4f4f4f;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 1.15rem;
+            color: #590d22;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: center;
         }
         .firma {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #ff0a54;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #c9184a;
         }
-        /* Corazones flotantes */
-        .corazon {
+        /* Animación de entrada para la carta */
+        @keyframes entradaCarta {
+            0% { opacity: 0; transform: translateY(50px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        /* Pétalos de rosa cayendo */
+        .petalo {
             position: absolute;
-            color: #ff7096;
-            font-size: 20px;
-            animation: flotar 4s linear infinite;
-            opacity: 0;
+            background-color: #ffb3c1;
+            border-radius: 0 70% 0 70%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: caer 5s linear infinite;
         }
-        @keyframes flotar {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-        @keyframes aparecer {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes caer {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(110vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <button id="btn-inicio" class="btn-sorpresa" onclick="empezarContador()">Tengo una sorpresa para ti, ¡haz clic! ✨</button>
+        <button id="btn-inicio" class="btn-interactivo" onclick="empezarContador()">
+            <span>🌸</span>
+            Dame un pequeño besito con tu dedo aquí
+        </button>
 
         <div id="contador-container">
             <div id="numero" class="numero">0</div>
-            <div class="texto-contador">razones y momentos a tu lado...</div>
+            <div id="texto-dinamico" class="texto-contador">días a tu lado...</div>
         </div>
 
         <div id="carta">
-            <div class="titulo-dias">❤️ 250 Días ❤️</div>
+            <div class="titulo-dias">🌸 250 Días 🌸</div>
             <p class="mensaje">
-                Parece increíble lo rápido que pasa el tiempo cuando soy feliz. 250 días compartiendo risas, secretos y momentos inolvidables contigo. Gracias por ser mi apoyo y mi alegría diaria.
+                Parece ayer cuando mandé el mensaje más absurdo de mi vida, pero desde que me respondiste, entendí que aquel mensaje no fue absurdo, sino perfecto. Gracias por hacerme tan feliz y demostrarme lo que es el amor verdadero.
             </p>
-            <p class="firma">Hoy, mañana y siempre te querré. ✨</p>
+            <p class="firma">tú y yo forever ♾️</p>
         </div>
     </div>
 
     <script>
-        // Función para generar corazones flotantes de fondo
-        function crearCorazon() {
-            const corazon = document.createElement('div');
-            corazon.classList.add('corazon');
-            corazon.innerText = '❤️';
-            corazon.style.left = Math.random() * 100 + 'vw';
-            corazon.style.animationDuration = Math.random() * 2 + 3 + 's';
-            corazon.style.fontSize = Math.random() * 20 + 15 + 'px';
-            document.body.appendChild(corazon);
-            setTimeout(() => { corazon.remove(); }, 5000);
+        // Configuración y generación de pétalos de rosa flotantes
+        function crearPetalo() {
+            const petalo = document.createElement('div');
+            petalo.classList.add('petalo');
+            
+            // Tamaños y tonos aleatorios para que quede más realista y bonito
+            const tamaño = Math.random() * 15 + 10; 
+            const tonosRosa = ['#ffb3c1', '#ff85a1', '#f7a4b8', '#ffccd5'];
+            
+            petalo.style.width = tamaño + 'px';
+            petalo.style.height = (tamaño * 1.2) + 'px';
+            petalo.style.backgroundColor = tonosRosa[Math.floor(Math.random() * tonosRosa.length)];
+            petalo.style.left = Math.random() * 100 + 'vw';
+            petalo.style.animationDuration = Math.random() * 3 + 4 + 's'; // Velocidad de caída
+            
+            document.body.appendChild(petalo);
+            setTimeout(() => { petalo.remove(); }, 6000);
         }
-        setInterval(crearCorazon, 300);
+        // Iniciar la lluvia suave de pétalos desde el principio
+        setInterval(crearPetalo, 250);
 
-        // Función del contador interactivo
+        // Lógica del contador interactivo
         function empezarContador() {
             document.getElementById('btn-inicio').style.display = 'none';
             document.getElementById('contador-container').style.display = 'block';
             
             let cuenta = 0;
             const objetivo = 250;
-            const velocidad = 15; // Milisegundos por número
+            const velocidad = 12; // Un pelín más rápido para dar dinamismo
+            const textoDinamico = document.getElementById('texto-dinamico');
 
             const intervalo = setInterval(() => {
                 cuenta++;
                 document.getElementById('numero').innerText = cuenta;
                 
+                // Efecto de texto dinámico a mitad del contador
+                if (cuenta > 120) {
+                    textoDinamico.innerText = "...que podrían parecer 250 segundos de lo feliz que estoy a tu lado.";
+                }
+                
                 if (cuenta >= objetivo) {
                     clearInterval(intervalo);
-                    setTimeout(mostrarMensajeFinal, 800);
+                    setTimeout(mostrarMensajeFinal, 1200); // Pausa dramática antes de la carta
                 }
             }, velocidad);
         }
 
-        // Función para mostrar la carta final
+        // Mostrar la carta con explosión de pétalos
         function mostrarMensajeFinal() {
             document.getElementById('contador-container').style.display = 'none';
             document.getElementById('carta').style.display = 'block';
             
-            // Lluvia intensa de corazones al final
-            for(let i=0; i<30; i++) {
-                setTimeout(crearCorazon, i * 100);
+            // Lluvia extra de pétalos para celebrar el final
+            for(let i = 0; i < 40; i++) {
+                setTimeout(crearPetalo, i * 80);
             }
         }
     </script>
