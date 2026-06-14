@@ -26,29 +26,44 @@
             width: 100%;
             max-width: 500px;
         }
-        /* Botón Inicial Romántico */
+        /* Zona del Botón Interactivo con Foto */
         .btn-interactivo {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             color: #c9184a;
             cursor: pointer;
             font-weight: 500;
-            padding: 20px;
-            transition: transform 0.3s ease;
-            animation: latido 2s infinite ease-in-out;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn-interactivo span {
-            display: block;
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .contenedor-foto {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 6px solid #ff4d6d;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.3);
+            animation: latidoFoto 2.5s infinite ease-in-out;
         }
-        @keyframes latido {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .contenedor-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
         }
-        /* Contador Rediseñado */
+        @keyframes latidoFoto {
+            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 77, 109, 0.3); }
+            50% { transform: scale(1.04); box-shadow: 0 12px 35px rgba(255, 77, 109, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 77, 109, 0.3); }
+        }
+        /* Contador */
         #contador-container {
             display: none;
         }
@@ -62,17 +77,17 @@
         .texto-contador {
             font-size: 1.25rem;
             color: #590d22;
-            margin-top: 15px;
+            margin-top: 20px;
             line-height: 1.5;
             padding: 0 20px;
         }
-        /* Carta Final Elegante y Centrada */
+        /* Carta Final Centrada */
         #carta {
             display: none;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             padding: 40px 30px;
             border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(89, 13, 34, 0.1);
+            box-shadow: 0 15px 35px rgba(89, 13, 34, 0.15);
             width: 90%;
             margin: 0 auto;
             animation: entradaCarta 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -96,12 +111,11 @@
             font-weight: 700;
             color: #c9184a;
         }
-        /* Animación de entrada para la carta */
         @keyframes entradaCarta {
             0% { opacity: 0; transform: translateY(50px) scale(0.9); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
-        /* Pétalos de rosa cayendo */
+        /* Pétalos de rosa */
         .petalo {
             position: absolute;
             background-color: #ffb3c1;
@@ -111,14 +125,8 @@
             animation: caer 5s linear infinite;
         }
         @keyframes caer {
-            0% {
-                transform: translateY(-10vh) translateX(0) rotate(0deg);
-                opacity: 0.9;
-            }
-            100% {
-                transform: translateY(110vh) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -126,8 +134,10 @@
 
     <div class="container">
         <button id="btn-inicio" class="btn-interactivo" onclick="empezarContador()">
-            <span>🌸</span>
-            Dame un pequeño besito con tu dedo aquí
+            <div class="contenedor-foto">
+                <img src="foto.jpeg" alt="Nosotros">
+            </div>
+            <p>Dame un pequeño besito con tu dedo aquí</p>
         </button>
 
         <div id="contador-container">
@@ -145,11 +155,10 @@
     </div>
 
     <script>
-        // Configuración y generación de pétalos de rosa flotantes
+        // Lluvia de pétalos
         function crearPetalo() {
             const petalo = document.createElement('div');
             petalo.classList.add('petalo');
-            
             const tamaño = Math.random() * 15 + 10; 
             const tonosRosa = ['#ffb3c1', '#ff85a1', '#f7a4b8', '#ffccd5'];
             
@@ -164,7 +173,7 @@
         }
         setInterval(crearPetalo, 250);
 
-        // Lógica del contador
+        // Contador
         function empezarContador() {
             document.getElementById('btn-inicio').style.display = 'none';
             document.getElementById('contador-container').style.display = 'block';
@@ -179,12 +188,12 @@
                 
                 if (cuenta >= objetivo) {
                     clearInterval(intervalo);
-                    setTimeout(mostrarMensajeFinal, 1200); // Pausa para terminar de leer antes de la carta
+                    setTimeout(mostrarMensajeFinal, 1200);
                 }
             }, velocidad);
         }
 
-        // Mostrar la carta final
+        // Mostrar la carta
         function mostrarMensajeFinal() {
             document.getElementById('contador-container').style.display = 'none';
             document.getElementById('carta').style.display = 'block';
