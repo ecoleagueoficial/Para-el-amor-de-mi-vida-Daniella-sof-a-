@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el amor de mi vida❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            z-index: 10;
+        }
+        /* Botón Inicial */
+        .btn-sorpresa {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn-sorpresa:hover {
+            transform: scale(1.05);
+            background-color: #ff0a54;
+        }
+        /* Contador */
+        #contador-container {
+            display: none;
+        }
+        .numero {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #ff477e;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        .texto-contador {
+            font-size: 1.5rem;
+            color: #4a4a4a;
+            margin-top: 10px;
+        }
+        /* Carta Final */
+        #carta {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
+            animation: aparecer 1s ease forwards;
+        }
+        .titulo-dias {
+            font-size: 3.5rem;
+            color: #ff477e;
+            margin-bottom: 10px;
+        }
+        .mensaje {
+            font-size: 1.2rem;
+            color: #4f4f4f;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .firma {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ff0a54;
+        }
+        /* Corazones flotantes */
+        .corazon {
+            position: absolute;
+            color: #ff7096;
+            font-size: 20px;
+            animation: flotar 4s linear infinite;
+            opacity: 0;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button id="btn-inicio" class="btn-sorpresa" onclick="empezarContador()">Tengo una sorpresa para ti, ¡haz clic! ✨</button>
+
+        <div id="contador-container">
+            <div id="numero" class="numero">0</div>
+            <div class="texto-contador">razones y momentos a tu lado...</div>
+        </div>
+
+        <div id="carta">
+            <div class="titulo-dias">❤️ 250 Días ❤️</div>
+            <p class="mensaje">
+                Parece increíble lo rápido que pasa el tiempo cuando soy feliz. 250 días compartiendo risas, secretos y momentos inolvidables contigo. Gracias por ser mi apoyo y mi alegría diaria.
+            </p>
+            <p class="firma">Hoy, mañana y siempre te querré. ✨</p>
+        </div>
+    </div>
+
+    <script>
+        // Función para generar corazones flotantes de fondo
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.classList.add('corazon');
+            corazon.innerText = '❤️';
+            corazon.style.left = Math.random() * 100 + 'vw';
+            corazon.style.animationDuration = Math.random() * 2 + 3 + 's';
+            corazon.style.fontSize = Math.random() * 20 + 15 + 'px';
+            document.body.appendChild(corazon);
+            setTimeout(() => { corazon.remove(); }, 5000);
+        }
+        setInterval(crearCorazon, 300);
+
+        // Función del contador interactivo
+        function empezarContador() {
+            document.getElementById('btn-inicio').style.display = 'none';
+            document.getElementById('contador-container').style.display = 'block';
+            
+            let cuenta = 0;
+            const objetivo = 250;
+            const velocidad = 15; // Milisegundos por número
+
+            const intervalo = setInterval(() => {
+                cuenta++;
+                document.getElementById('numero').innerText = cuenta;
+                
+                if (cuenta >= objetivo) {
+                    clearInterval(intervalo);
+                    setTimeout(mostrarMensajeFinal, 800);
+                }
+            }, velocidad);
+        }
+
+        // Función para mostrar la carta final
+        function mostrarMensajeFinal() {
+            document.getElementById('contador-container').style.display = 'none';
+            document.getElementById('carta').style.display = 'block';
+            
+            // Lluvia intensa de corazones al final
+            for(let i=0; i<30; i++) {
+                setTimeout(crearCorazon, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
